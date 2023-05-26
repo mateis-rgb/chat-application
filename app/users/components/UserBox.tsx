@@ -21,13 +21,14 @@ const UserBox: React.FC<UserBoxProps> = ({ data }) => {
 			userId: data.id
 		})
 			.then ((data) => {
-				router.push(`/conversation/${data.data.id}`);
+				router.push(`/conversations/${data.data.id}`);
 			})
+			.catch((err: any) => console.error(err))
 			.finally(() => setIsLoading(false));
 	}, [data, router]);
 
 	return (
-		<div className="w-full relative flex items-center space-x-3 bg-white p-3 p-3 hover:bg-neutral-100 rounded-lg transition cursor-pointer">
+		<div onClick={handleClick} className="w-full relative flex items-center space-x-3 bg-white p-3 p-3 hover:bg-neutral-100 rounded-lg transition cursor-pointer">
 			<Avatar user={data} />
 			<div className="min-w-0 flex-1">
 				<div className="focus:outline-none">
