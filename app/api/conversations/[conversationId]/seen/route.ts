@@ -41,7 +41,7 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 			return NextResponse.json(lastMessage);
 		}
 
-		const updatedMessage = prisma.message.update({
+		const updatedMessage = await prisma.message.update({
 			where: {
 				id: lastMessage.id
 			},

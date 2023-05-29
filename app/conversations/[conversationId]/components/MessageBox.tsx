@@ -9,8 +9,8 @@ import Avatar from "@/app/components/Avatar";
 import Image from "next/image";
 
 interface MessageBoxProps {
-	isLast?: boolean
 	data: FullMessageType
+	isLast?: boolean
 }
 
 const MessageBox: React.FC<MessageBoxProps> = ({ isLast, data }) => {
@@ -18,8 +18,8 @@ const MessageBox: React.FC<MessageBoxProps> = ({ isLast, data }) => {
 
 	const isOwn = session?.data?.user?.email === data?.sender?.email;
 	const seenList = (data.seen || [])
-		.filter((user) => user.email !== data?.sender?.email)
-		.map((user) => user.name)
+		.filter((user: any) => user.email !== data?.sender?.email)
+		.map((user: any) => user.name)
 		.join(", ");
 
 	const container = clsx("flex gap-3 p-4", isOwn && "justify-end");
@@ -58,14 +58,8 @@ const MessageBox: React.FC<MessageBoxProps> = ({ isLast, data }) => {
 						</div>
 					)}
 				</div>
-				{ isLast && isOwn && seenList.length > 0 && (
+				{isLast && isOwn && seenList.length > 0 && (
 					<div className="text-sm font-light text-gray-500">
-						{/* Systeme de lecture de message ne fonctionne pas
-							=>> regarder les requetes si le seen est bien retournée 
-								-> Si pas le cas, regarder dans les collections mongodb
-								
-							-> Si tjr pas bon verifier les exports ou autres dans l'api
-						*/}	
 						{`Seen by ${seenList}`}
 					</div>
 				)}
