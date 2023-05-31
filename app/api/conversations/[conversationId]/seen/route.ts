@@ -38,7 +38,7 @@ export async function POST(request: Request, { params }: { params: IParams }) {
 		const lastMessage = conversation.messages[conversation.messages.length - 1];
  	
 		if (!lastMessage) {
-			return NextResponse.json(lastMessage);
+			return NextResponse.json(conversation);
 		}
 
 		const updatedMessage = await prisma.message.update({
