@@ -11,6 +11,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { IoClose, IoTrash } from "react-icons/io5";
 import ConfirmModal from "./ConfirmModal";
 import AvatarGroup from "@/app/components/AvatarGroup";
+import UserBox from "@/app/users/components/UserBox";
 
 interface ProfileDrawerProps {
 	isOpen: boolean
@@ -126,11 +127,17 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ data, isOpen, onClose }) 
 														{data.isGroup ? (
 															<div>
 																<dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
-																	Email
+																	Members :
 																</dt>
 
 																<dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-																	{ data.users.map((user) => user.email).join(", ") }
+																	{ data.users.map((user) => (
+																		<UserBox
+																			key={user.id}
+																			data={user}
+																			isHoverable={false}
+																		/>
+																	)) }
 																</dd>
 															</div>
 														) : (

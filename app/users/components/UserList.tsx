@@ -21,6 +21,7 @@ const UserList: React.FC<UserListProps> = ({ items }) => {
 					<UserBox 
 						key={item.id}
 						data={item}
+						isHoverable={true}
 					/>
 				)) }
 			</div>
